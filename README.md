@@ -1,2 +1,2 @@
-# used-car-price-classification
-Used car price tier classification with data preprocessing and logistic regression pipeline (R) (Group Project)
+# Time Series Analysis of Average Temperature in Pohang 
+Time Series Analysis of Average Temperature in Pohang and ARIMA 
