@@ -1,4 +1,4 @@
-Used car price tier classification with data preprocessing and logistic regression pipeline (R) (Group Project)
+# Used car price tier classification with data preprocessing and logistic regression pipeline (R) (Group Project)
 
 技術スタック・開発体制 言語：R 使用ライブラリ：dplyr, caret, car, pROC, MASS 開発形態：チーム開発（4名） バージョン管理：ローカル管理 モデル：ロジスティック回帰
 
