@@ -1,2 +1,38 @@
 # Time Series Analysis of Average Temperature in Pohang 
-Time Series Analysis of Average Temperature in Pohang and ARIMA 
+
+## 技術スタック・開発体制
+- 言語：Python
+- 使用ライブラリ：pandas, numpy, matplotlib, statsmodels（adfuller, OLS）, seaborn
+- 分析対象：年平均気温の時系列（Pohang ASOS）
+- 開発形態：個人開発（分析スクリプト）
+
+## 概要
+Pohang の年平均気温データを用い、トレンドを含む時系列の定常性を検証し、トレンド除去後の自己相関構造（ACF/PACF）を確認しました。
+単純な平均比較では誤解を招く可能性があるため、ADF検定とトレンド分離を組み合わせて「変動成分」を可視化・評価しました。
+
+## 分析フロー
+1. データ読み込み・可視化  
+   - 年平均気温の推移をプロットし、全体傾向を把握
+2. 定常性検定（ADF）
+   - 定数項あり（c）と、トレンドを含む設定（ct）でADF検定を実施し、時系列の性質を比較
+3. トレンド分離（OLS）
+   - 回帰（temp ~ num）でトレンドを推定し、残差（観測−予測）を算出
+4. 自己相関分析（ACF/PACF）
+   - トレンド除去後の残差に対して ACF/PACF を描画し、短期相関の有無を確認
+5. 可視化
+   - 元データ + 回帰直線（regplot）、残差系列、ACF/PACF を出力
+
+## 工夫したこと
+- ADF検定を「定数項のみ」と「トレンド込み」で比較し、検定設定による解釈差を意識
+- トレンドをOLSで分離し、残差に着目して“年々変動”の構造を評価
+- 可視化（時系列・回帰直線・残差・ACF/PACF）を一連のパイプラインとして整理
+
+## 入出力
+- 入力：
+  - pohang_temp_asos.csv（year を日付として読み込み）
+  - pohang_temp_res.csv（回帰用データ：temp, num を利用）
+- 出力：
+  - 年平均気温の時系列プロット
+  - ADF検定結果（コンソール出力）
+  - 回帰結果サマリ（コンソール出力）
+  - 残差系列プロット、ACF/PACF 図、回帰直線付きプロット
